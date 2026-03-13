@@ -71,7 +71,7 @@ public:
         return maxId;
     }
 
-
+// make the array
     vector<vector<int>> buildParentList(const vector<vector<int>>& pairs, int maxId) {
        vector<vector<int>> parents(maxId + 1);
 
@@ -106,14 +106,14 @@ vector<bool> getAncestors(int person, const vector<vector<int>>& parents) {
     }
 
 
-
+ //  function for main hopefully use for cout
     bool hasCommonAncestor(const vector<vector<int>>& pairs, int person1, int person2) {
         int maxId = getMaxId(pairs);
         vector<vector<int>> parents = buildParentList(pairs, maxId);
 
         vector<bool> ancestors1 = getAncestors(person1, parents);
         vector<bool> ancestors2 = getAncestors(person2, parents);
-
+// iterate through the ancestors and check if there is a common ancestor
         for (int i = 0; i <= maxId; i++) {
             if (ancestors1[i] && ancestors2[i]) {
                 return true;
@@ -142,7 +142,7 @@ std::vector<std::vector<int>> pairs = {
 
 
 Solution sol;
-
+// print the results of the function calls
     cout << boolalpha;
     cout << sol.hasCommonAncestor(pairs, 3, 8) << endl;   // false
     cout << sol.hasCommonAncestor(pairs, 5, 8) << endl;   // true
@@ -156,7 +156,7 @@ Solution sol;
     cout << sol.hasCommonAncestor(pairs, 3, 6) << endl;   // true
     cout << sol.hasCommonAncestor(pairs, 21, 11) << endl; // true
 
-
+    cout << " ---- done!  ---- " << endl;
     // finish after prints
     return 0;
 
