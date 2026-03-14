@@ -56,6 +56,36 @@ class Solution {
 public: 
 
 
+int numOfUnplacedFruits(vector<int>& fruits, vector<int>& baskets) {
+        int n = fruits.size();
+
+        // used[i] tells us whether basket i has already been taken
+        vector<bool> used(n, false);
+
+        int unplaced = 0;
+
+        // Go through each fruit type from left to right
+        for (int i = 0; i < n; i++) {
+            bool placed = false;
+
+            // Find the leftmost available basket that can hold this fruit
+            for (int j = 0; j < n; j++) {
+                if (!used[j] && baskets[j] >= fruits[i]) {
+                    used[j] = true;   // mark basket as taken
+                    placed = true;    // fruit was successfully placed
+                    break;            // must use the leftmost valid basket
+                }
+            }
+
+            // If no basket worked, this fruit remains unplaced
+            if (!placed) {
+                unplaced++;
+            }
+        }
+
+        return unplaced;
+    }
+
 
 
 
@@ -68,6 +98,13 @@ int main() {
 
     Solution sol;
 
+    vector<int> fruits1 = {4, 2, 5};
+    vector<int> baskets1 = {3, 5, 4};
+    cout << sol.numOfUnplacedFruits(fruits1, baskets1) << endl; // 1
+
+    vector<int> fruits2 = {3, 6, 1};
+    vector<int> baskets2 = {6, 4, 7};
+    cout << sol.numOfUnplacedFruits(fruits2, baskets2) << endl; // 0
 
     
     
