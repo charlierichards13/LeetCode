@@ -26,8 +26,8 @@ public:
             unordered_map <char, int> CountS;
             unordered_map <char, int> CountT;
             for (int i = 0; i < s.length(); i++) {
-                CountS[s[i]++];
-                CountT[t[i]++];
+                CountS[s[i]]++;
+                CountT[t[i]]++;
             }
             // return true if they are anagram
             return CountS == CountT;
